@@ -48,7 +48,12 @@ export default Ember.Component.extend({
     };
   }),
 
-  setup: on('didInsertElement', function() {
+  didInsertElement(...params) {
+    this._super(...params);
+    this.setup();
+  },
+
+  setup() {
     let $this = this.$().get(0);
     let properties = this.getProperties(
       'start', 'step', 'margin',
@@ -105,7 +110,7 @@ export default Ember.Component.extend({
         });
       }
     });
-  }),
+  },
 
   update: on('didUpdateAttrs', function() {
     let slider = this.get('slider');
